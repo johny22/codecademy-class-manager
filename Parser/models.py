@@ -6,3 +6,6 @@ class Aluno(models.Model):
     hoje = models.IntegerField()
     dias_seg = models.IntegerField()
     total_ponts = models.IntegerField()
+
+    def __unicode__(self):
+        return self.nome
