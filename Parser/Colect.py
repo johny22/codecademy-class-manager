@@ -48,9 +48,3 @@ class Collector:
 
 
 
-
-
-
-a = Collector("/home/jones/Documentos/perfis_codecademy")
-a.gerarURLs()
-a.colectPerfis()
