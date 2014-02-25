@@ -23,6 +23,9 @@ class Collector:
             doc = html.document_fromstring(perfil.content) ## Documento HTML do Perfil
             bod = doc.body ## Corpo da página
 
+
+
+            
             ## Coleta de Dados
             nome = bod.find_class("full-name").pop()
             if(nome.text_content() == ""):
@@ -33,6 +36,37 @@ class Collector:
             dias_seg = pontos.pop()
             total_ponts = pontos.pop()
 
+            ## Informações das trilhas
+            track = bod.find_class("track-progress")
+            track_n = bod.find_class("track-name")
+            track_st = bod.find_class("stat-value")
+
+
+            tracks = []
+            
+
+            
+            for j in range(len(track)):
+                tracks.append({"name" : track_n[j].text_content(),
+                                   "percent": round(float(track[j].attrib['data-percent']) * 100),
+                                   "last" : track_st[j].text_content().strip(" \n") + " ago"})
+                
+                
+
+            ## Informações dos achievements
+            perfil2 = get(i + "/achievements")
+            doc2 = html.document_fromstring(perfil2.content)
+            bod2 = doc2.body
+
+            achievements = bod2.find_class("achievement")
+            perf_achievements = []
+
+            for j in achievements:
+                nomeA = j.find_class("name").pop()
+                data = j.find_class("created_at").pop()
+                perf_achievements.append([nomeA.text_content().strip(" \n"), data.text_content().strip(" \n")])
+                
+
             DictD = dict() ## Dicionário que armazena os dados de cada aluno
             
             DictD["Nome"] = nome.text_content()
@@ -40,11 +74,11 @@ class Collector:
             DictD["Hoje"] = hoje.text_content().strip("\n ")
             DictD["Dias Seguidos"] = dias_seg.text_content()
             DictD["Total"] = total_ponts.text_content()
+            DictD["perf_achievements"] = perf_achievements[:]
+            DictD["tracks"] = tracks[:]
+                
 
             ## Colocar os perfis na lista
 
             self.perfis.append(DictD)
             
-
-
-
