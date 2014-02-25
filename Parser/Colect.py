@@ -4,6 +4,7 @@
 
 from requests import get
 from lxml import html
+from datetime import datetime
 
 
 class Collector:
@@ -64,7 +65,7 @@ class Collector:
             for j in achievements:
                 nomeA = j.find_class("name").pop()
                 data = j.find_class("created_at").pop()
-                perf_achievements.append([nomeA.text_content().strip(" \n"), data.text_content().strip(" \n")])
+                perf_achievements.append([nomeA.text_content().strip(" \n"), datetime.strptime(data.text_content().strip(" \n"), "%B %d, %Y")])
                 
 
             DictD = dict() ## Dicionário que armazena os dados de cada aluno
@@ -76,9 +77,11 @@ class Collector:
             DictD["Total"] = total_ponts.text_content()
             DictD["perf_achievements"] = perf_achievements[:]
             DictD["tracks"] = tracks[:]
+            DictD["Data_extract"] = datetime.now() ## Data da Coleta dos dados
                 
 
             ## Colocar os perfis na lista
 
             self.perfis.append(DictD)
             
+
