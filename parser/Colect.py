@@ -1,4 +1,6 @@
 # -*- coding: cp1252 -*-
+## Jones RomÃ£o
+
 ##Autor: Jones Romão Bezerra
 ##Descrição: Módulo que coleta dados em perfis do codecademy on-line.
 

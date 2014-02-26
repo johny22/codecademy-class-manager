@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+## Jones Romão 
+
 from django.http import HttpResponse
 from datetime import datetime
 from Colect import Collector
