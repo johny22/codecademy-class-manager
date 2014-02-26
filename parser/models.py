@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.db import models
 
 class Perfil(models.Model):
@@ -23,8 +25,8 @@ class Track(models.Model):
     perfil = models.ForeignKey(Perfil)
     nome = models.CharField(max_length=100)
     percent = models.IntegerField()
-    data = models.DateTimeField('Data da coleta')
-
+    data = models.CharField(max_length=100)
+    
     def __unicode__(self):
         return self.nome
 
@@ -35,6 +37,7 @@ class History(models.Model):
     hoje = models.IntegerField()
     dias_seg = models.IntegerField()
     total_ponts = models.IntegerField()
+    data_extract = models.DateTimeField('Data de extração')
 
     def __unicode__(self):
-        return self.nome
+        return unicode(self.data_extract)

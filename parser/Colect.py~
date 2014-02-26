@@ -71,7 +71,7 @@ class Collector:
             DictD = dict() ## Dicionário que armazena os dados de cada aluno
             
             DictD["Nome"] = nome.text_content()
-            DictD["Melhor Pontuação"] = melhorP.text_content()
+            DictD["Melhores Pontos"] = melhorP.text_content()
             DictD["Hoje"] = hoje.text_content().strip("\n ")
             DictD["Dias Seguidos"] = dias_seg.text_content()
             DictD["Total"] = total_ponts.text_content()
