@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 ## Jones Romão
 
 from codecademy.parser.models import *

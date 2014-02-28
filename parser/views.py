@@ -33,6 +33,8 @@ def InserirNoBD(request):
         
     now = datetime.now()
     html = """<hmtl>
-                <body>
-                    It is now %s.</body></html>""" % now
+                  <body>
+
+                 	The time is %s.
+                    </body></html>""" % now
     return HttpResponse(html)
