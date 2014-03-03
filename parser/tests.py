@@ -1,4 +1,3 @@
-## Jones Romão
 
 """
 This file demonstrates writing tests using the unittest module. These will pass

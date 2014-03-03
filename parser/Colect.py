@@ -1,5 +1,5 @@
 # -*- coding: cp1252 -*-
-## Jones RomÃ£o
+## Jones Romão
 
 ##Autor: Jones Romão Bezerra
 ##Descrição: Módulo que coleta dados em perfis do codecademy on-line.
@@ -67,7 +67,11 @@ class Collector:
             for j in achievements:
                 nomeA = j.find_class("name").pop()
                 data = j.find_class("created_at").pop()
-                perf_achievements.append([nomeA.text_content().strip(" \n"), datetime.strptime(data.text_content().strip(" \n"), "%B %d, %Y")])
+                perf_achievements.append([nomeA.text_content().strip(" \n "), datetime.strptime(data.text_content().strip(" \n "), "%B %d, %Y")])
+
+            for l in achievements:
+                if(l == []):
+                    achievements.remove(l)
                 
 
             DictD = dict() ## Dicionário que armazena os dados de cada aluno
