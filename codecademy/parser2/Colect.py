@@ -74,7 +74,8 @@ class Collector:
             for j in range(len(achievements)):
                 nomeA = achievements[j].find_class("name").pop()
                 data = achievements[j].find_class("created_at").pop()
-                perf_achievements.append({"nomeA": nomeA.text_content().strip(" \n "), "data" : datetime.strptime(data.text_content().strip(" \n "), "%B %d, %Y"),
+                perf_achievements.append({"nomeA": nomeA.text_content().strip(" \n "),
+		"data" : datetime.now().strftime("%B %d, %Y"),
                                           "imgUrl" : urls[j]})
 
             for l in achievements:
