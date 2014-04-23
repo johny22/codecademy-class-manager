@@ -1,0 +1,9 @@
+{% extends "login.html" %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+
+Agora é {{now}}.
+
+{% endblock %}

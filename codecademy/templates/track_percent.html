@@ -1,0 +1,50 @@
+<html>
+
+	<head>
+		<script type="text/javascript" src="/site_media/js/jquery-1.11.0.js"></script>
+        	<script type="text/javascript" src="/site_media/js/highcharts.js"></script>
+	</head>
+	
+	<body>
+		<div id="containerBar" style="width:100%; height:400px;"></div>
+		
+		<script>
+			var chart2;
+			var Nomes = "{{track_names}}".split(".");
+			var Dados = {{percents}};
+			$(document).ready(function() {
+				chart2 = new Highcharts.Chart({
+				    chart: {
+					renderTo: 'containerBar',
+					type: 'column'
+				    },
+				    title: {
+					text: 'Porcentagem nas Trilhas'
+				    },
+				    yAxis: {
+					title: {
+					    text: 'Porcentagem %'
+					}
+				    },
+				    tooltip: {
+					valueSuffix: '%'
+				    },
+				    plotOptions: {
+					column: {
+					    pointPadding: 0.2,
+					    borderWidth: 0
+					}
+				    }
+				});
+				for(var i = 0; i < Dados.length; i++)
+				chart2.addSeries({
+					name: Nomes[i],
+					data: [Dados[i]]
+					});
+			    });
+			    
+		
+		</script>
+	</body>
+
+</html>

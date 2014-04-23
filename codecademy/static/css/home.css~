@@ -1,0 +1,66 @@
+body{
+	background-color: black;
+}
+img{
+	position: relative;
+	top: 10px;
+	left: 20px;
+}
+div #teach {
+	border-radius: 25px 25px 0px 0px;
+	border-right: 3px inset;
+	width: 240px;
+	height: 600px;
+	background-color: #555555;
+}
+
+#teach p {
+	padding-bottom: 3px;
+	border-radius: 0px 10px 10px 10px;
+	border-bottom: 2px inset silver;
+	border-right: 2px inset silver;
+	color: gold;
+}
+#cell p{
+	font-size: 12pt;
+	border-radius: 0px;
+	border: 0px;
+	color: red;
+	font-weight:bold;
+	padding: 0px;
+	margin: 10px 5px 10px 5px;
+	
+}
+
+
+div #cell{
+	display: inline-block;
+	position: relative;
+	top: 100px;
+	left: 50px;
+	margin-right: 50px;
+	margin-top: 30px;
+	width: 250px;
+	border: 2px outset silver;
+	box-shadow: 5px 8px 5px #333333;
+	background-color: black;
+}
+
+div #classe {
+	border: 2px solid silver;
+	border-radius: 25px;
+	position: absolute;
+	top: 10px;
+	left: 270px;
+	width: 700px;
+	height: 600px;
+	background-color: #555555;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+#classe h1 {
+	color: gold;
+	text-align: center;
+}
+

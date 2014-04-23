@@ -1,0 +1,8 @@
+body{
+	background-color: white;
+}
+div #teach {
+	height
+	width: 200px;
+	background-color: red;
+}

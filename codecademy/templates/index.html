@@ -1,0 +1,68 @@
+{% extends "admin/base.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block extrahead %}
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+	<script type="text/javascript" src="/site_media/js/jquery-1.11.0.js"></script>
+        <script type="text/javascript" src="/site_media/js/highcharts.js"></script>
+	<link rel="stylesheet" type="text/css" href="site_media/css/home.css">
+{% endblock %}
+
+{% block content %}
+	<div id="teach">
+		<img src="/site_media/imagens/Teach.png" />
+		<p>Professor: Adorilson Bezerra</p>
+		<p>Codecademy: <a href="http://www.codecademy.com/pt/users/adorilson">adorilson<a/></p>
+		<p>Disciplina: Desenvovimento Web</p>
+	<div>
+	
+	<div id="classe">
+		<a href="/addDB/" title='Insert into DB'><img src="/site_media/imagens/icons/ref_data.png"></a>
+		<h1> Turma </h1>
+		
+
+	</div>
+	
+	<script>
+		turma = document.getElementById("classe")
+		pontos = {{Pontos}};
+		nomes = '{{Nomes}}'.split(".");
+		pks = {{Pks}};
+
+		
+		for(var i = 0; i<pontos.length; i++){
+			turma.innerHTML += "<div id='cell' class='celula'>" +
+			"<p>Nome: "+ nomes[i] +"<br/>Total: " + pontos[i] + "<br></p>" +
+			"<p>" +
+			"<a class='icons' title='badges' href='/badges/'><img src='/site_media/imagens/icons/badge.png'> " +
+			"</a> " +
+			"<a class='icons' title='charts' href='/charts/'><img src='/site_media/imagens/icons/chart.png'> " +
+			"</a> " +
+			"<a class='icons' title='tracks percent' href='/track_percent/'><img src='/site_media/imagens/icons/track_percent.png'> " +
+			"</a> " +
+			"</p> " +
+		"</div>";		
+		}
+		
+		var anc = document.getElementsByClassName('celula');
+		var teste;
+		var lks;
+		for (var i = 0; i < anc.length; i++){
+			for (var j = 0; j < nomes.length; j++){
+				if(anc[i].innerHTML.contains(nomes[j]))
+				{
+					lks = anc[i].getElementsByClassName('icons')
+					for(var k = 0; k < lks.length; k++)
+						lks[k].href += pks[i]
+
+				}
+			}
+		}
+		
+		
+	</script>
+
+{% endblock %}
+
+
