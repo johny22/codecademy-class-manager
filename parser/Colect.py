@@ -1,0 +1,92 @@
+# -*- coding: cp1252 -*-
+## Jones Romão
+
+##Autor: Jones Romão Bezerra
+##Descrição: Módulo que coleta dados em perfis do codecademy on-line.
+
+from requests import get
+from lxml import html
+from datetime import datetime
+
+
+class Collector:
+    def __init__(self, path):
+        self.arq = open(path, "r+")
+        self.urlist = []
+        self.perfis = []
+
+    def gerarURLs(self):
+        self.urlist = self.arq.readlines()
+        for i in range(len(self.urlist)):
+            self.urlist[i] = self.urlist[i].strip("\n")
+
+    def colectPerfis(self):
+        for i in self.urlist:
+            perfil = get(i) ## Faz uma requisição HTTP apartir da URL
+            doc = html.document_fromstring(perfil.content) ## Documento HTML do Perfil
+            bod = doc.body ## Corpo da página
+
+
+
+            
+            ## Coleta de Dados
+            nome = bod.find_class("full-name").pop()
+            if(nome.text_content() == ""):
+                nome = bod.find_class("username").pop()
+            melhorP = bod.find_class("best-count").pop()
+            hoje = bod.find_class("count-right").pop() ## Necessita de str.strip("\n ")
+            pontos = bod.find_class("stat-count")
+            dias_seg = pontos.pop()
+            total_ponts = pontos.pop()
+
+            ## Informações das trilhas
+            track = bod.find_class("track-progress")
+            track_n = bod.find_class("track-name")
+            track_st = bod.find_class("stat-value")
+
+
+            tracks = []
+            
+
+            
+            for j in range(len(track)):
+                tracks.append({"name" : track_n[j].text_content(),
+                                   "percent": round(float(track[j].attrib['data-percent']) * 100),
+                                   "last" : track_st[j].text_content().strip(" \n") + " ago"})
+                
+                
+
+            ## Informações dos achievements
+            perfil2 = get(i + "/achievements")
+            doc2 = html.document_fromstring(perfil2.content)
+            bod2 = doc2.body
+
+            achievements = bod2.find_class("achievement")
+            perf_achievements = []
+
+            for j in achievements:
+                nomeA = j.find_class("name").pop()
+                data = j.find_class("created_at").pop()
+                perf_achievements.append([nomeA.text_content().strip(" \n "), datetime.strptime(data.text_content().strip(" \n "), "%B %d, %Y")])
+
+            for l in achievements:
+                if(l == []):
+                    achievements.remove(l)
+                
+
+            DictD = dict() ## Dicionário que armazena os dados de cada aluno
+            
+            DictD["Nome"] = nome.text_content()
+            DictD["Melhores Pontos"] = melhorP.text_content()
+            DictD["Hoje"] = hoje.text_content().strip("\n ")
+            DictD["Dias Seguidos"] = dias_seg.text_content()
+            DictD["Total"] = total_ponts.text_content()
+            DictD["perf_achievements"] = perf_achievements[:]
+            DictD["tracks"] = tracks[:]
+            DictD["Data_extract"] = datetime.now() ## Data da Coleta dos dados
+                
+
+            ## Colocar os perfis na lista
+
+            self.perfis.append(DictD)
+            
