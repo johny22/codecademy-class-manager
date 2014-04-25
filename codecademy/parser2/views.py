@@ -11,13 +11,13 @@ from codecademy.parser2.models import *
 
 
 
-parser = Collector("/home/jones/codecademy/codecademy/parser2/perfis_codecademy")
-parser.gerarURLs()
-parser.colectPerfis()
 
 
 
 def InserirNoBD(request):
+    parser = Collector("/home/jones/codecademy/codecademy/parser2/perfis_codecademy")
+    parser.gerarURLs()
+    parser.colectPerfis()
     for i in parser.perfis:
         try:
             perf = Perfil.objects.get(nome = i["Nome"])
