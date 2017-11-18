@@ -1,18 +1,11 @@
 # -*- coding: utf-8 -*-
 ## Jones Romão 
 
-
 from django.http import HttpResponse
 from datetime import datetime
 from django.shortcuts import render_to_response
 from .Colect import Collector
 from codecademy.parser2.models import *
-
-
-
-
-
-
 
 def InserirNoBD(request):
     parser = Collector("/home/jones/codecademy/codecademy/parser2/perfis_codecademy")
@@ -27,11 +20,9 @@ def InserirNoBD(request):
             perf.dias_seg = i["Dias Seguidos"]
             perf.total_ponts = i["Total"]
             perf.save()
-            
         except Perfil.DoesNotExist:
             perf = Perfil(nome = i["Nome"], melhorP = i["Melhores Pontos"], hoje = i["Hoje"], dias_seg = i["Dias Seguidos"], total_ponts = i["Total"])
             perf.save()
-
 
         achi = i["perf_achievements"][:]
         for j in achi:
@@ -39,23 +30,18 @@ def InserirNoBD(request):
         
 
         tracks = i["tracks"][:]
-        
         for k in tracks:
-
             try:
                 trk = Track.objects.get(perfil = Perfil.objects.get(nome=i["Nome"]), nome = k["name"])
                 trk.nome = k["name"]
                 trk.percent = k["percent"]
                 trk.data = k["last"]
                 trk.save()
-                
             except Track.DoesNotExist:
                 trk = Track(perfil = Perfil.objects.get(nome=i["Nome"]), nome = k["name"], percent = k["percent"], data = k["last"])
                 trk.save()
-
         hist = History(perfil = Perfil.objects.get(nome=i["Nome"]), melhorP = i["Melhores Pontos"], hoje = i["Hoje"], dias_seg = i["Dias Seguidos"], total_ponts = i["Total"], data_extract = i["Data_extract"])
         hist.save()
-        
     html = """<hmtl>
                   <body>
 
@@ -104,9 +90,9 @@ def charts(request, PK):
     perf = Perfil.objects.get(pk=int(PK))
     Nome = perf.nome
     Melhor = perf.melhorP
-        Hoje = perf.hoje
-        Dias_seg = perf.dias_seg
-        Total = perf.total_ponts
+    Hoje = perf.hoje
+    Dias_seg = perf.dias_seg
+    Total = perf.total_ponts
 
     # for i in range(len(ordered_hist)):
     #     if(ordered_hist[i].perfil.pk == int(PK)):
@@ -138,14 +124,15 @@ def badges(request, PK):
                         nomes +=  "." + nome
 
         for i in range(len(badges)):
-        if(badges[i].perfil.pk == int(PK)):
-                    url = badges[i].imgUrl
-                    if(imgUrl == ""):
-                        imgUrl += url
-                    else:
-                        imgUrl +=  " " + url
-                    
+            if(badges[i].perfil.pk == int(PK)):
+                url = badges[i].imgUrl
+                if(imgUrl == ""):
+                    imgUrl += url
+                else:
+                    imgUrl +=  " " + url
+
         Nome = Perfil.objects.get(pk=int(PK)).nome
+
     qt = len(nomes[:].split("."))
 
     return render_to_response('badges.html', locals())
