@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 ## Jones Romão 
 
-from django.http import HttpResponse
 from datetime import datetime
-from django.shortcuts import render_to_response
+
+from django.http import HttpResponse
+from django.shortcuts import render_to_response, render
+
+from parser2.models import *
 from .Colect import Collector
-from codecademy.parser2.models import *
+
 
 def InserirNoBD(request):
     parser = Collector("/home/jones/codecademy/codecademy/parser2/perfis_codecademy")
@@ -49,8 +52,6 @@ def InserirNoBD(request):
                     </body></html>"""
     return HttpResponse(html)
 
-
-
 def index(request):
     now = datetime.now()
     Perfis = Perfil.objects.all()
@@ -64,12 +65,7 @@ def index(request):
             Nomes += "." + Perfis[i].nome
         Pontos.append(Perfis[i].total_ponts)
         Pks.append(Perfis[i].pk)
-    return render_to_response('index.html', locals())
-
-
-
-
-
+    return render(request, 'parser2/index.html', locals())
 
 def charts(request, PK):
     historico = History.objects.all().order_by('data_extract')
@@ -150,10 +146,3 @@ def track_percent(request, PK):
             else:
                 track_names += "." + i.nome
     return render_to_response('track_percent.html', locals())
-
-
-
-
-
-
-

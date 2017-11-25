@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 ## Jones Romão
+
 from django.db import models
 
 class Perfil(models.Model):
@@ -41,5 +42,3 @@ class History(models.Model):
 
     def __unicode__(self):
         return unicode(self.perfil.nome)
-
-

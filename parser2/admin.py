@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 ## Jones Romão
 
-from codecademy.parser2.models import *
 from django.contrib import admin
+
+from parser2.models import *
 
 admin.site.register(Perfil)
 admin.site.register(Achievements)

@@ -1,4 +1,5 @@
 # Django settings for codecademy project.
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -8,6 +9,8 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DATABASES = {
     'default': {
@@ -67,7 +70,6 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-	'/home/jones/codecademy/codecademy/static'
 )
 
 # List of finder classes that know how to find static files in
@@ -107,7 +109,6 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-	'/home/jones/codecademy/codecademy/templates',
 )
 
 INSTALLED_APPS = (
@@ -118,7 +119,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'codecademy.parser2',
+    'parser2.apps.Parser2Config'
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
