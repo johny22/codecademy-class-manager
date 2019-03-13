@@ -15,7 +15,7 @@ class Perfil(models.Model):
 
 
 class Achievements(models.Model):
-    perfil = models.ForeignKey(Perfil)
+    perfil = models.ForeignKey(Perfil, on_delete=models.CASCADE)
     nome = models.CharField(max_length=100)
     data = models.DateTimeField('Data da conquista')
     imgUrl = models.CharField(max_length=200)
@@ -23,7 +23,7 @@ class Achievements(models.Model):
         return self.nome
 
 class Track(models.Model):
-    perfil = models.ForeignKey(Perfil)
+    perfil = models.ForeignKey(Perfil, on_delete=models.CASCADE)
     nome = models.CharField(max_length=100)
     percent = models.IntegerField()
     data = models.CharField(max_length=100)
@@ -33,7 +33,7 @@ class Track(models.Model):
 
 
 class History(models.Model):
-    perfil = models.ForeignKey(Perfil)
+    perfil = models.ForeignKey(Perfil, on_delete=models.CASCADE)
     melhorP = models.IntegerField()
     hoje = models.IntegerField()
     dias_seg = models.IntegerField()
