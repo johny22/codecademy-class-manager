@@ -85,6 +85,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
 TIME_ZONE = 'America/Recife'
 
 LANGUAGE_CODE = 'pt-br'

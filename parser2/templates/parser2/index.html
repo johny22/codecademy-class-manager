@@ -2,23 +2,25 @@
 
 {% block title %} Home {% endblock %}
 
+{% load static  %}
+
 {% block extrahead %}
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
-	<script type="text/javascript" src="/site_media/js/jquery-1.11.0.js"></script>
-        <script type="text/javascript" src="/site_media/js/highcharts.js"></script>
-	<link rel="stylesheet" type="text/css" href="site_media/css/home.css">
+	<script type="text/javascript" src="{% static "/js/jquery-1.11.0.js" %}"></script>
+        <script type="text/javascript" src="{% static "/js/highcharts.js" %}"></script>
+	<link rel="stylesheet" type="text/css" href="{% static "/css/home.css" %}">
 {% endblock %}
 
 {% block content %}
 	<div id="teach">
-		<img src="/site_media/imagens/Teach.png" />
+		<img src="{% static "/imagens/Teach.png" %}" />
 		<p>Professor: Adorilson Bezerra</p>
 		<p>Codecademy: <a href="http://www.codecademy.com/pt/users/adorilson">adorilson<a/></p>
 		<p>Disciplina: Desenvovimento Web</p>
 	<div>
 	
 	<div id="classe">
-		<a href="/addDB/" title='Insert into DB'><img src="/site_media/imagens/icons/ref_data.png"></a>
+		<a href="/addDB/" title='Insert into DB'><img src="{% static "/imagens/icons/ref_data.png" %}"></a>
 		<h1> Turma </h1>
 		
 
