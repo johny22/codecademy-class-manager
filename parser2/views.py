@@ -2,16 +2,18 @@
 ## Jones Romão 
 
 from datetime import datetime
-
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, render
+import os
 
 from parser2.models import *
 from .Colect import Collector
+from codecademy import settings
 
 
 def InserirNoBD(request):
-    parser = Collector("/home/jones/codecademy/codecademy/parser2/perfis_codecademy")
+    perfis_path = os.path.join(settings.BASE_DIR, "parser2", "perfis_codecademy")
+    parser = Collector(perfis_path)
     parser.gerarURLs()
     parser.colectPerfis()
     for i in parser.perfis:
