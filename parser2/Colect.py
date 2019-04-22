@@ -4,11 +4,8 @@
 ##Autor: Jones Romão Bezerra
 ##Descrição: Módulo que coleta dados em perfis do codecademy.
 
-from requests import get
-from lxml import html
+from pyquery import PyQuery as pQry
 from datetime import datetime
-
-import pdb
 
 class Collector:
     def __init__(self, path):
@@ -23,20 +20,18 @@ class Collector:
 
     def colectPerfis(self):
         for i in self.urlist:
-            perfil = get(i)
-            document = html.document_fromstring(perfil.content)
-            content = document.body
+            perfil = pQry(i)
+            content = perfil('body')
 
             ## Coleta de Dados
-            nome = content.find_class("username")
+            nome = content.find(".username")
             if nome:
-                nome = content.find_class("username").pop()
-                nome = nome.text_content().strip(' \n')
+                nome = nome.text()
             
             print('Coletando perfil de "%s"...' % nome)
-            profile_time = content.find_class("profile-time")
-            #pdb.set_trace()
-            prof_children = profile_time[0].getchildren()
+            profile_time = content.find(".profile-time")
+            if profile_time:
+                prof_children = profile_time[0].getchildren()
             
             melhorP = 0
             dias_seg = 0
