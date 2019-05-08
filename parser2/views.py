@@ -69,12 +69,12 @@ def index(request):
         Pks.append(Perfis[i].pk)
     return render(request, 'parser2/index.html', locals())
 
-def charts(request, PK):
+def charts(request, perfil_id):
     historico = History.objects.all().order_by('data_extract')
     datas = ""
     Pk = 0
     for i in range(len(historico)):
-        if(historico[i].perfil.pk == int(PK)):
+        if(historico[i].perfil.pk == int(perfil_id)):
             data = str(historico[i].data_extract.day) + "/" + str(historico[i].data_extract.month)  + "/" + str(historico[i].data_extract.year)
             if (Pk != historico[i].pk):
                 if(datas == ""):
@@ -85,28 +85,23 @@ def charts(request, PK):
 
     ordered_hist = History.objects.all().order_by('perfil')
     Pontos = []
-    perf = Perfil.objects.get(pk=int(PK))
+    perf = Perfil.objects.get(pk=int(perfil_id))
     Nome = perf.nome
     Melhor = perf.melhorP
     Hoje = perf.hoje
     Dias_seg = perf.dias_seg
     Total = perf.total_ponts
 
-    # for i in range(len(ordered_hist)):
-    #     if(ordered_hist[i].perfil.pk == int(PK)):
-    #         Pontos.append(ordered_hist[i].total_ponts)
-
     return render_to_response('charts.html', locals())
 
-def badges(request, PK):
+def badges(request, perfil_id):
     badges = Achievements.objects.all().order_by('perfil')
     datas = ""
     nomes = ""
     imgUrl = ""
 
-
     for i in range(len(badges)):
-        if(badges[i].perfil.pk == int(PK)):
+        if(badges[i].perfil.pk == int(perfil_id)):
             data = str(badges[i].data.day) + "/" + str(badges[i].data.month)  + "/" + str(badges[i].data.year)
             if(datas == ""):
                             datas += data
@@ -114,7 +109,7 @@ def badges(request, PK):
                 datas +=  " " + data
 
     for i in range(len(badges)):
-        if(badges[i].perfil.pk == int(PK)):
+        if(badges[i].perfil.pk == int(perfil_id)):
                     nome = badges[i].nome
                     if(nomes == ""):
                         nomes += nome
@@ -122,26 +117,26 @@ def badges(request, PK):
                         nomes +=  "." + nome
 
         for i in range(len(badges)):
-            if(badges[i].perfil.pk == int(PK)):
+            if(badges[i].perfil.pk == int(perfil_id)):
                 url = badges[i].imgUrl
                 if(imgUrl == ""):
                     imgUrl += url
                 else:
                     imgUrl +=  " " + url
 
-        Nome = Perfil.objects.get(pk=int(PK)).nome
+        Nome = Perfil.objects.get(pk=int(perfil_id)).nome
 
     qt = len(nomes[:].split("."))
 
     return render_to_response('badges.html', locals())
 
-def track_percent(request, PK):
+def track_percent(request, perfil_id):
     now = datetime.now()
     tracks = Track.objects.all()
     track_names = ""
     percents = []
     for i in tracks:
-        if(i.perfil.pk == int(PK)):
+        if(i.perfil.pk == int(perfil_id)):
             percents.append(i.percent)
             if(track_names == ""):
                 track_names += i.nome

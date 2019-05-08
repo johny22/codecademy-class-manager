@@ -7,8 +7,8 @@ admin.autodiscover()
 
 urlpatterns = [
    path('addDB/', InserirNoBD),
-   path('charts/<int:pk>/', charts),
-   path('badges/<int:pk>/', badges),
-   path('track_percent/<int:pk>/', track_percent),
+   path('charts/<int:perfil_id>/', charts),
+   path('badges/<int:perfil_id>/', badges),
+   path('track_percent/<int:perfil_id>/', track_percent),
    path('', index, name='home')
 ]
