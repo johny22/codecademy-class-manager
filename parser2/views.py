@@ -14,8 +14,8 @@ from codecademy import settings
 def InserirNoBD(request):
     perfis_path = os.path.join(settings.BASE_DIR, "parser2", "perfis_codecademy")
     parser = Collector(perfis_path)
-    parser.gerarURLs()
-    parser.colectPerfis()
+    parser.get_profile_urls()
+    parser.colect_all()
     for i in parser.perfis:
         try:
             perf = Perfil.objects.get(nome = i["Nome"])
@@ -92,7 +92,7 @@ def charts(request, perfil_id):
     Dias_seg = perf.dias_seg
     Total = perf.total_ponts
 
-    return render_to_response('charts.html', locals())
+    return render(request, 'parser2/charts.html', locals())
 
 def badges(request, perfil_id):
     badges = Achievements.objects.all().order_by('perfil')
@@ -128,7 +128,7 @@ def badges(request, perfil_id):
 
     qt = len(nomes[:].split("."))
 
-    return render_to_response('badges.html', locals())
+    return render(request, 'parser2/badges.html', locals())
 
 def track_percent(request, perfil_id):
     now = datetime.now()
@@ -142,4 +142,4 @@ def track_percent(request, perfil_id):
                 track_names += i.nome
             else:
                 track_names += "." + i.nome
-    return render_to_response('track_percent.html', locals())
+    return render(request, 'parser2/track_percent.html', locals())

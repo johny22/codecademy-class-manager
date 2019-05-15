@@ -13,12 +13,12 @@ class Collector:
         self.urlist = []
         self.perfis = []
 
-    def gerarURLs(self):
+    def get_profile_urls(self):
         self.urlist = self.arq.readlines()
         for i in range(len(self.urlist)):
             self.urlist[i] = self.urlist[i].strip("\n")
 
-    def colectPerfis(self):
+    def colect_all(self):
         for i in self.urlist:
             perfil = pQry(i)
             content = perfil('body')
