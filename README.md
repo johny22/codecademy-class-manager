@@ -1,4 +1,9 @@
-Codecademy
+Codecademy Class Manager
 ==========
 
-Este é um projeto TCC baseado no &lt;codecademy.com>. Ele irá extrair dados do codecademy e gerar dados estatísticos da interação dos alunos com a plataforma.
+| Conclusion Year | Teacher Advisor |
+|--|--|
+|2014|[Adorilson Bezerra](https://github.com/adorilson)|
+
+This project is a Final Paper of Information Technology Technical degree. Created as a tool to help the Teacher view their alumns' progress inside Codecademy learning platform. The core feature consists in collect profiles information throughout crawling method and generate statistical data about alumns' progress. 
+
