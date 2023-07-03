@@ -5,5 +5,9 @@ Codecademy Class Manager
 |--|--|
 |2014|[Adorilson Bezerra](https://github.com/adorilson)|
 
-This project is a Final Paper of Information Technology Technical degree. Created as a tool to help the Teacher view their alumns' progress inside Codecademy learning platform. The core feature consists in collect profiles information throughout crawling method and generate statistical data about alumns' progress. 
+This project is a Final Paper of Information Technology Technical degree. Created as a tool to help the Teacher view his Students' progress inside [Codecademy](https://www.codecademy.com) learning platform. The core feature consists in collect profiles information throughout Web Scraping and generate statistical data about each Student. 
 
+* v1.0 => Legacy code! (:see_no_evil: Forgive me... I was just a newcomer that time)
+	* Django==2.1.7
+	* PyQuery
+* v2.0 => Coming soon... :muscle:
