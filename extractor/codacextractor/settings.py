@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from config import settings as dn_conf
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ix$3)jbo4^&jhtxwxguqi8r@9xf*jq$y0)_wjpap8aw0)ohe7d'
+SECRET_KEY = dn_conf.get(
+    'SECRET_KEY',
+    'django-insecure-ix$3)jbo4^&jhtxwxguqi8r@9xf*jq$y0)_wjpap8aw0)ohe7d'
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -112,9 +116,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'pt-br'
+LANGUAGE_CODE = dn_conf.get('LOCALE', 'pt-br')
 
-TIME_ZONE = 'America/Recife'
+TIME_ZONE = dn_conf.get('TIME_ZONE', 'UTC')
 
 USE_I18N = True
 

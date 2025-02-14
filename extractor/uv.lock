@@ -25,17 +25,28 @@ wheels = [
 ]
 
 [[package]]
+name = "dynaconf"
+version = "3.2.7"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/35/3c/cbb09611ee5e182083484a18418e43176cf91b25144215703fc54dbb19d4/dynaconf-3.2.7.tar.gz", hash = "sha256:1246ef16b0577aa25876f1606e8eb2ea2d9acc61a39087e01c90c5a9da787b46", size = 231651 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/93/74/91d275b7596e4f6ee1d12ab80c65dcae6edb6706dc05008bf7df38a58549/dynaconf-3.2.7-py2.py3-none-any.whl", hash = "sha256:d4bba5d75242acc7bee575e44e190a38e15a7dc02ba5fe7580e4c019ed1acdd6", size = 233788 },
+]
+
+[[package]]
 name = "extractor"
 version = "2.0.0"
 source = { virtual = "." }
 dependencies = [
     { name = "django" },
+    { name = "dynaconf" },
     { name = "psycopg2-binary" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "django", specifier = ">=5.1.6" },
+    { name = "dynaconf", specifier = ">=3.2.7" },
     { name = "psycopg2-binary", specifier = ">=2.9.10" },
 ]
 
